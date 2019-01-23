@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = HomePage;
+  likes:number = 0;
+  comments: Comment[] = [];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -18,5 +19,24 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+  postComment(){
+    this.comments.push(new Comment("Cruceru Lucas", "Lorem Ipsum"));
+  }
+
+  incrementLikes(){
+    this.likes = this.likes + 1;
+  }
+
 }
+export class Comment {
+  username:string;
+  text:string;
+
+  constructor(username:string, text:string){
+    this.username = username;
+    this.text = text;
+  }
+
+}
+
 
