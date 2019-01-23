@@ -1,0 +1,19 @@
+Tema 1
+Touch screen
+camera
+finger print
+
+AppStore - FingerPrint
+SnapChat - camera
+touchscreen - whatsapp
+
+Tema 2
+IOS
+Avantaje:
+-Secure: standardele sunt mult mai mari ca o aplicatie sa fie pusa pe appstore
+-Latest technology: military grade encripyion and face recognition
+-Good looking: This is more of a subjective point but its one nontheless
+Dezavantaje:
+-Not flexible: its hard to make customize it to your liking
+-Some "features" are more of a burden than helping you at all.
+-The os slows down your phone as time goes by. (you need to keep your hardware updated as well every couple years)
