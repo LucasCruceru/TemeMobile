@@ -1,56 +1,14 @@
-<ion-header>
-  <ion-navbar>
-    <ion-icon name="menu"></ion-icon>
-    <ion-title>
-      Post
-    </ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-<ion-content class="cards-bg">
-
-  <ion-card>
-
-    <div>
-      <img src="../../assets/imgs/fish.jpg"/>
-    </div>
-
-    <ion-card-content>
-
-      <ion-row no-padding>
-        <ion-col>
-          <p>
-            Lorem ipsum dolor sit amet, conse ctetur
-          </p>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="info" icon-start (click)="incrementLikes()">
-            <ion-icon name='heart'></ion-icon>
-            {{this.likes}}
-          </button>
-        </ion-col>
-        <ion-col text-center>
-          <button ion-button clear small color="info" icon-start (click)="postComment()">
-            <ion-icon name='text'></ion-icon>
-            {{this.comments.length}}
-          </button>
-        </ion-col>
-      </ion-row>
-
-    </ion-card-content>
-  </ion-card>
-  <ion-item  *ngFor ="let comm of comments" >
-    <ion-card>
-      <ion-card-content>
-        <ion-row>
-          <h2>{{comm.username}}</h2>
-        </ion-row>
-        <ion-row>
-          <p>{{comm.text}}</p>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-
+<ion-list>
+  <ion-item *ngFor="let entry of masini">
+    <ion-label>{{entry.brand}}</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="entry.selected"></ion-checkbox>
   </ion-item>
-</ion-content>
+</ion-list>
+<h3>Imi plac masinile</h3>
+<button ion-button color="primary" (click)="returnAllSelected()">Arata masinile care imi plac</button>
+<ion-list>
+  <ion-item *ngFor="let brand of allSelected">
+    <ion-icon name="car"></ion-icon> <h5>{{this.brand}}</h5>
+  </ion-item>
+</ion-list>
+

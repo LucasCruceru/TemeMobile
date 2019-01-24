@@ -1,40 +1,35 @@
-import {Component, Input} from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home';
+import {Component} from '@angular/core';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
-  likes:number = 0;
-  comments: Comment[] = [];
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
-  postComment(){
-    this.comments.push(new Comment("Cruceru Lucas", "Lorem Ipsum"));
+  allSelected:string[] = [];
+  masini:Masina[] = [];
+  constructor(){
+    this.masini.push(new Masina("Audi", false),new Masina("Dacia", false),
+      new Masina("Mercedes", false),new Masina("Tesla", false))
   }
 
-  incrementLikes(){
-    this.likes = this.likes + 1;
+  returnAllSelected(){
+    this.masini.forEach(masina => {
+      if(masina.selected == true){
+        if(masina.brand == "Dacia"){
+          this.allSelected.push("DACIA - daca ai cap ia-ti altceva")
+        }else{
+          this.allSelected.push(masina.brand)
+        }
+      }
+    }
+    )
   }
-
 }
-export class Comment {
-  username:string;
-  text:string;
+export class Masina {
+  brand:string;
+  selected:boolean;
 
-  constructor(username:string, text:string){
-    this.username = username;
-    this.text = text;
+  constructor(brand:string, selected:boolean){
+    this.brand = brand;
+    this.selected = selected;
   }
 
 }
