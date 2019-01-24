@@ -1,0 +1,14 @@
+<ion-list>
+  <ion-item *ngFor="let entry of masini">
+    <ion-label>{{entry.brand}}</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="entry.selected"></ion-checkbox>
+  </ion-item>
+</ion-list>
+<h3>Imi plac masinile</h3>
+<button ion-button color="primary" (click)="returnAllSelected()">Arata masinile care imi plac</button>
+<ion-list>
+  <ion-item *ngFor="let brand of allSelected">
+    <ion-icon name="car"></ion-icon> <h5>{{this.brand}}</h5>
+  </ion-item>
+</ion-list>
+
