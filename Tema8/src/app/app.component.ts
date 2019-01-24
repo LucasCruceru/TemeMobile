@@ -1,37 +1,30 @@
-import {Component} from '@angular/core';
-import {ToastController, ToastOptions} from "ionic-angular";
+import {Component, Input} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  types:Type[] = [];
-
-  constructor(public toast: ToastController) {
-    this.types.push(new Type("Cash", false, toast),new Type("Credit Card", false, toast),
-      new Type("Check", false, toast),new Type("Write-Off", false, toast))
+  inputNumber:number;
+  formatedNumber:number = 0;
+  constructor() {}
+  formatNumber():void{
+    this.formatedNumber = this.inputNumber;
   }
 
 }
-export class Type {
-  name:string;
-  selected:boolean;
-  toastOpt:ToastOptions;
 
-  constructor(name:string, selected:boolean, public toast: ToastController){
-    this.name = name;
-    this.selected = selected;
-
+@Pipe({name: 'phoneNumber'})
+export class PhoneNumber implements PipeTransform {
+  transform(value: number): string {
+    var figures:string[] = value.toString().split('');
+    if(figures.length == 10) {
+      return "(" + figures[0] + figures[1] + figures[2] + figures[3] + ") " + figures[4] + figures[5] + figures[6] + " " + figures[7] + figures[8] + figures[9];
+    }else{
+      return "Invalid number"
+    }
   }
-   showToast() {
-    this.toastOpt = {
-      message: "You chose to pay with " + this.name,
-      duration: 2000
-    };
-
-    this.toast.create(this.toastOpt).present();
-  }
-
 }
+
 
 
