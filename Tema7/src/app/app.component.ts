@@ -1,35 +1,35 @@
 import {Component} from '@angular/core';
+import {ToastController, ToastOptions} from "ionic-angular";
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  allSelected:string[] = [];
-  masini:Masina[] = [];
-  constructor(){
-    this.masini.push(new Masina("Audi", false),new Masina("Dacia", false),
-      new Masina("Mercedes", false),new Masina("Tesla", false))
+  types:Type[] = [];
+
+  constructor(public toast: ToastController) {
+    this.types.push(new Type("Cash", false, toast),new Type("Credit Card", false, toast),
+      new Type("Check", false, toast),new Type("Write-Off", false, toast))
   }
 
-  returnAllSelected(){
-    this.masini.forEach(masina => {
-      if(masina.selected == true){
-        if(masina.brand == "Dacia"){
-          this.allSelected.push("DACIA - daca ai cap ia-ti altceva")
-        }else{
-          this.allSelected.push(masina.brand)
-        }
-      }
-    }
-    )
-  }
 }
-export class Masina {
-  brand:string;
+export class Type {
+  name:string;
   selected:boolean;
+  toastOpt:ToastOptions;
 
-  constructor(brand:string, selected:boolean){
-    this.brand = brand;
+  constructor(name:string, selected:boolean, public toast: ToastController){
+    this.name = name;
     this.selected = selected;
+
+  }
+   showToast() {
+    this.toastOpt = {
+      message: "You chose to pay with " + this.name,
+      duration: 2000
+    };
+
+    this.toast.create(this.toastOpt).present();
   }
 
 }
